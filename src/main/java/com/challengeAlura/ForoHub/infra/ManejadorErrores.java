@@ -1,5 +1,7 @@
 package com.challengeAlura.ForoHub.infra;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -24,6 +26,11 @@ public class ManejadorErrores {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity entityNotFound(EntityNotFoundException ex) {
         return ResponseEntity.notFound().build();
+    }
+
+    @ExceptionHandler(JWTVerificationException.class)
+    public ResponseEntity verificarTokenInvalido(JWTVerificationException ex) {
+        return ResponseEntity.badRequest().body("Token invalido");
     }
 
     private record DetallesError(

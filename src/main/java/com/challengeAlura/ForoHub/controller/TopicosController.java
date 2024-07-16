@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/topicos")
-public class topicosController {
+public class TopicosController {
 
     @Autowired
     private CrearTopicoService crearTopicoService;
